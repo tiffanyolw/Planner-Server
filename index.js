@@ -28,7 +28,13 @@ config.sync({force:false}).then(() => {
 
 // ----- TASKS ----- //
 app.get("/tasks", (req, res) => {
-    Task.findAll().then((result) => {
+    let data = {};
+    if (req.query.orderby) {
+        const order = req.query.order ? req.query.order : "DESC";
+        data.order = [[req.query.orderby, order]];
+    }
+
+    Task.findAll(data).then((result) => {
         res.send(result);
     }).catch(() => {
         res.status(500).send("Could not get tasks");
@@ -80,7 +86,13 @@ app.put("/tasks/update/id/:id", (req, res) => {
 
 // ----- GOALS ----- //
 app.get("/goals", (req, res) => {
-    Goal.findAll().then((result) => {
+    let data = {};
+    if (req.query.orderby) {
+        const order = req.query.order ? req.query.order : "DESC";
+        data.order = [[req.query.orderby, order]];
+    }
+
+    Goal.findAll(data).then((result) => {
         res.send(result);
     }).catch(() => {
         res.status(500).send("Could not get goals");
@@ -132,7 +144,13 @@ app.put("/goals/update/id/:id", (req, res) => {
 
 // ----- NOTES ----- //
 app.get("/notes", (req, res) => {
-    Note.findAll().then((result) => {
+    let data = {};
+    if (req.query.orderby) {
+        const order = req.query.order ? req.query.order : "DESC";
+        data.order = [[req.query.orderby, order]];
+    }
+
+    Note.findAll(data).then((result) => {
         res.send(result);
     }).catch(() => {
         res.status(500).send("Could not get notes");
