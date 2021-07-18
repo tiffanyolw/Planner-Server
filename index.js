@@ -60,8 +60,8 @@ app.post("/tasks/create", (req, res) => {
     });
 });
 
-app.put("/tasks/update/:id", (req, res) => {
-    Task.findByPk(req.params.id).then((req, res) => {
+app.put("/tasks/update/id/:id", (req, res) => {
+    Task.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.description = req.body.description;
         result.startDate = req.body.startDate;
@@ -112,8 +112,8 @@ app.post("/goals/create", (req, res) => {
     });
 });
 
-app.put("/goals/update/:id", (req, res) => {
-    Goal.findByPk(req.params.id).then((req, res) => {
+app.put("/goals/update/id/:id", (req, res) => {
+    Goal.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.description = req.body.description;
         result.startDate = req.body.startDate;
@@ -164,8 +164,8 @@ app.post("/notes/create", (req, res) => {
     });
 });
 
-app.put("/notes/update/:id", (req, res) => {
-    Note.findByPk(req.params.id).then((req, res) => {
+app.put("/notes/update/id/:id", (req, res) => {
+    Note.findByPk(req.params.id).then((result) => {
         result.name = req.body.name;
         result.header = req.body.header;
         result.details = req.body.details;
