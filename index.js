@@ -51,6 +51,11 @@ app.get("/tasks/filter", (req, res) => {
     let data = {};
     data.where = queries;
 
+    if (req.query.orderby) {
+        const order = req.query.order ? req.query.order : "DESC";
+        data.order = [[req.query.orderby, order]];
+    }
+
     Task.findAll(data).then((result) => {
         res.send(result);
     }).catch(() => {
@@ -109,6 +114,11 @@ app.get("/goals/filter", (req, res) => {
     let data = {};
     data.where = queries;
 
+    if (req.query.orderby) {
+        const order = req.query.order ? req.query.order : "DESC";
+        data.order = [[req.query.orderby, order]];
+    }
+
     Goal.findAll(data).then((result) => {
         res.send(result);
     }).catch(() => {
@@ -166,6 +176,11 @@ app.get("/notes/filter", (req, res) => {
 
     let data = {};
     data.where = queries;
+
+    if (req.query.orderby) {
+        const order = req.query.order ? req.query.order : "DESC";
+        data.order = [[req.query.orderby, order]];
+    }
 
     Note.findAll(data).then((result) => {
         res.send(result);
